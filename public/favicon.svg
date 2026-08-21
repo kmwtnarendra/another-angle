@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Clean angle (triangle) -->
+  <path d="M20 80 L50 20 L80 80 Z" fill="#00c6ff" opacity="0.9"></path>
+  
+  <!-- Orbiting dot -->
+  <circle cx="65" cy="35" r="8" fill="#ff6600"></circle>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

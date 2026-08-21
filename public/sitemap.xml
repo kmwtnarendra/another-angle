@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://anotherangle.in/</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/experimental/science/astrophysics/earthsunscaled.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/experimental/science/astrophysics/solarsystemscaled.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/all-experiments.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/experimental/science/astrophysics/earth-sun/magnetosphere/earth-magnetosphere-demo.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/experimental/science/astrophysics/earth/earth-satellite-sim.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/finance/loan/emi/emi-calculator.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/finance/investment/sip/sip-calculator.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://anotherangle.in/spa/finance/savevsdebt/debt-vs-saver.html</loc>
+  <lastmod>2025-10-10T08:44:33+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
