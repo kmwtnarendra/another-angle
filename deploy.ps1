@@ -29,11 +29,11 @@ aws s3 sync ./out "s3://$Bucket" `
 
 # 4. Invalidate CloudFront so the new HTML is served right away
 if ($DistributionId -ne "") {
-    Write-Host "4/4 Invalidating CloudFront cache for $DistributionId..." -ForegroundColor Yellow
-    aws cloudfront create-invalidation `
-      --profile "$Profile" `
-      --distribution-id "$DistributionId" `
-      --paths "/*"
+    Write-Host "4/4 Invalidating CloudFront cache for $DistributionId (S3 Event)..." -ForegroundColor Yellow
+    #aws cloudfront create-invalidation `
+    # --profile "$Profile" `
+    # --distribution-id "$DistributionId" `
+    # --paths "/*"
 }
 
 Write-Host "Deployment complete! Site URL: https://$Bucket" -ForegroundColor Cyan
