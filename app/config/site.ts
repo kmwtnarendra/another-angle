@@ -92,6 +92,22 @@ export const tools: Tool[] = [
     category: "finance",
     built: true,
   },
+  {
+    slug: "earth-magnetosphere",
+    title: "Earth Magnetosphere",
+    description: "Watch solar wind particles deflect off Earth\'s magnetic field in real-time.",
+    emoji: "🧲",
+    category: "science",
+    built: true,
+  },
+  {
+    slug: "earth-satellite",
+    title: "Earth Satellite Simulation",
+    description: "Top-down orbital simulation — add satellites and compare orbits from ISS to GEO.",
+    emoji: "🛰️",
+    category: "science",
+    built: true,
+  },
 ];
 
 // Only expose tools that have actual pages built.
