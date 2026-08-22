@@ -1,20 +1,55 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { siteConfig } from "./config/site";
 
 export const metadata: Metadata = {
-  title: "Another Angle",
-  description: "Another Angle",
+  metadataBase: new URL(siteConfig.domain),
+  title: {
+    default: siteConfig.seo.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.seo.description,
+  keywords: [...siteConfig.seo.keywords],
+  authors: [{ name: siteConfig.name }],
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: siteConfig.name,
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [{ url: siteConfig.seo.ogImage, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [siteConfig.seo.ogImage],
+  },
 };
 
-// This root layout wraps EVERY page (it's how Next.js's App Router
-// works — there's always one root layout). Keep it to only what truly
-// belongs on every page (e.g. global nav/footer, <html>/<body> tags,
-// fonts). Each page under app/<route>/page.tsx still owns its own
-// content and data independently — nothing here couples them together.
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const viewport: Viewport = {
+  themeColor: siteConfig.seo.themeColor,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.domain,
+    sameAs: [siteConfig.youtube.url, siteConfig.facebook.url, siteConfig.instagram.url],
+  };
+
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
