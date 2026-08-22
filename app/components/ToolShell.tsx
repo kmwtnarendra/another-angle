@@ -10,11 +10,17 @@ interface Props {
 export default function ToolShell({ title, emoji, children }: Props) {
   return (
     <div className="tool-page">
-      {/* Back nav */}
+      {/* Breadcrumb nav */}
       <header className="tool-header">
-        <Link href="/">← {siteConfig.name}</Link>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          {siteConfig.name}
+        </Link>
         <span style={{ color: "var(--border)", userSelect: "none" }}>/</span>
-        <span style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>{title}</span>
+        <Link href="/tools/" style={{ textDecoration: "none" }}>
+          Tools
+        </Link>
+        <span style={{ color: "var(--border)", userSelect: "none" }}>/</span>
+        <span style={{ fontSize: "0.85rem", color: "var(--text)" }}>{title}</span>
       </header>
 
       <div className="tool-body">
@@ -38,7 +44,12 @@ export default function ToolShell({ title, emoji, children }: Props) {
         }}
       >
         © {new Date().getFullYear()} {siteConfig.name} —{" "}
-        <a href={siteConfig.youtube.url} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-muted)" }}>
+        <a
+          href={siteConfig.youtube.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "var(--text-muted)" }}
+        >
           YouTube
         </a>{" "}
         ·{" "}

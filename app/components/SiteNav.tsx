@@ -15,18 +15,20 @@ export default function SiteNav() {
     >
       <Link
         href="/"
-        style={{ fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)" }}
+        style={{ fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)", textDecoration: "none" }}
       >
         {siteConfig.name}
       </Link>
-      <Link href="/#tools" style={{ color: "var(--text-muted)" }}>
+
+      <Link href="/tools/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>
         Tools
       </Link>
+
       <a
         href={siteConfig.youtube.url}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ color: "var(--text-muted)", marginLeft: "auto" }}
+        style={{ color: "var(--text-muted)", marginLeft: "auto", textDecoration: "none" }}
       >
         YouTube ↗
       </a>
