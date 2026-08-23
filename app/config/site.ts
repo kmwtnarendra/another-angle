@@ -108,6 +108,30 @@ export const tools: Tool[] = [
     category: "science",
     built: true,
   },
+  {
+    slug: "earth-sun-scaled",
+    title: "Earth vs Sun (Scaled)",
+    description: "Set Earth's diameter in real units and see how the Sun scales proportionally.",
+    emoji: "🌍☀️",
+    category: "science",
+    built: true,
+  },
+  {
+    slug: "solar-system-scaled",
+    title: "Solar System Scaled",
+    description: "All eight planets and the Sun drawn to scale — from tiny Mercury to the giant Sun.",
+    emoji: "🪐",
+    category: "science",
+    built: true,
+  },
+  {
+    slug: "latitude-longitude",
+    title: "Latitude & Longitude Globe",
+    description: "Interactive 3D globe with lat/lon grid. Drag to rotate, scroll to zoom.",
+    emoji: "🌐",
+    category: "science",
+    built: true,
+  },
 ];
 
 // Only expose tools that have actual pages built.
