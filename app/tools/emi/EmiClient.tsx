@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ToolShell from "../../components/ToolShell";
 import { calculateEMI, buildSchedule, formatINR, type EmiRow } from "../_lib/finance";
 
@@ -18,6 +18,25 @@ export default function EmiClient() {
   const [startDate, setStartDate] = useState(defaultStart());
   const [rows, setRows] = useState<EmiRow[]>([]);
   const [error, setError] = useState("");
+  const didLoad = useRef(false);
+
+  useEffect(() => {
+    if (didLoad.current) return;
+    didLoad.current = true;
+    const p = new URLSearchParams(window.location.search);
+    const pv = p.get("p"), rv = p.get("r"), tv = p.get("t"), dv = p.get("d");
+    if (pv) setPrincipal(pv);
+    if (rv) setRate(rv);
+    if (tv) setMonths(tv);
+    if (dv) setStartDate(dv);
+    if (p.get("auto") === "true" && pv && rv && tv) {
+      setTimeout(() => {
+        const P = parseFloat(pv), R = parseFloat(rv), T = parseInt(tv);
+        if (P > 0 && R > 0 && T > 0)
+          setRows(buildSchedule(P, R, T, dv ? new Date(dv) : null));
+      }, 0);
+    }
+  }, []); // eslint-disable-line
 
   function calculate() {
     const P = parseFloat(principal);
