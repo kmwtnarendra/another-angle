@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { buildMetadata, pageSeo } from "../../config/seo";
 import EarthSatelliteClient from "./EarthSatelliteClient";
 
-export const metadata: Metadata = {
-  title: "Earth Satellite Simulation",
-  description:
-    "Top-down simulation of Earth rotating with satellites in real orbital mechanics. Add satellites, adjust speed, and compare orbits — from ISS to geostationary.",
-  keywords: ["satellite simulation", "ISS orbit", "geostationary orbit", "earth rotation", "orbital mechanics", "space simulation"],
-  alternates: { canonical: "/tools/earth-satellite/" },
-};
+export const metadata: Metadata = buildMetadata("earth-satellite");
 
 export default function Page() {
-  return <EarthSatelliteClient />;
+  const jsonLd = pageSeo["earth-satellite"].jsonLd;
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <EarthSatelliteClient />
+    </>
+  );
 }

@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { buildMetadata, pageSeo } from "../../config/seo";
 import EmiClient from "./EmiClient";
 
-export const metadata: Metadata = {
-  title: "EMI Calculator",
-  description:
-    "Calculate your monthly loan EMI, total interest, and view the full repayment schedule. Free EMI calculator by Another Angle.",
-  keywords: ["EMI calculator", "loan calculator", "monthly EMI", "home loan", "car loan", "India"],
-  alternates: { canonical: "/tools/emi/" },
-};
+export const metadata: Metadata = buildMetadata("emi");
 
 export default function Page() {
-  return <EmiClient />;
+  const jsonLd = pageSeo["emi"].jsonLd;
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <EmiClient />
+    </>
+  );
 }

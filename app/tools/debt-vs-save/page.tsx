@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { buildMetadata, pageSeo } from "../../config/seo";
 import DebtVsSaveClient from "./DebtVsSaveClient";
 
-export const metadata: Metadata = {
-  title: "Buy Now vs Save First Calculator",
-  description:
-    "Should you take a loan or save first? Compare loan interest against savings returns and inflation to find the smarter financial path. Free calculator by Another Angle.",
-  keywords: ["debt vs save", "loan vs saving", "buy now or save", "inflation calculator", "financial decision tool India"],
-  alternates: { canonical: "/tools/debt-vs-save/" },
-};
+export const metadata: Metadata = buildMetadata("debt-vs-save");
 
 export default function Page() {
-  return <DebtVsSaveClient />;
+  const jsonLd = pageSeo["debt-vs-save"].jsonLd;
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <DebtVsSaveClient />
+    </>
+  );
 }

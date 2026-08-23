@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { buildMetadata, pageSeo } from "../../config/seo";
 import SipClient from "./SipClient";
 
-export const metadata: Metadata = {
-  title: "SIP Calculator",
-  description:
-    "Calculate the future value of your SIP (Systematic Investment Plan) with monthly contributions and expected annual returns. Free SIP calculator by Another Angle.",
-  keywords: ["SIP calculator", "mutual fund SIP", "monthly investment", "compound interest", "wealth creation India"],
-  alternates: { canonical: "/tools/sip/" },
-};
+export const metadata: Metadata = buildMetadata("sip");
 
 export default function Page() {
-  return <SipClient />;
+  const jsonLd = pageSeo["sip"].jsonLd;
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <SipClient />
+    </>
+  );
 }
