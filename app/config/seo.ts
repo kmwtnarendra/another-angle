@@ -85,7 +85,8 @@ export type PageSeoKey =
   | "earth-satellite"
   | "earth-sun-scaled"
   | "solar-system-scaled"
-  | "latitude-longitude";
+  | "latitude-longitude"
+  | "resistor-calculator";
 
 export interface PageSeo {
   title:       string;
@@ -300,6 +301,25 @@ export const pageSeo: Record<PageSeoKey, PageSeo> = {
       url:                 BASE + "/tools/latitude-longitude/",
       description:         "Interactive 3D globe with full latitude and longitude grid.",
       publisher:           { "@type": "Organization", name: siteConfig.name, url: BASE },
+    },
+  },
+
+  "resistor-calculator": {
+    title:       "Resistor Color Code Calculator",
+    description: "Decode 4-band resistor color codes visually. Click each colour band, watch the resistor update in real-time, and get the exact resistance value with tolerance. Beginner-friendly with full colour name labels.",
+    keywords:    ["resistor color code", "4 band resistor calculator", "resistor value calculator", "ohm calculator", "electronics color code", "resistor decoder"],
+    ogImage:     ogImage("/og/tools/resistor-calculator.png"),
+    canonical:   "/tools/resistor-calculator/",
+    jsonLd: {
+      "@context":           "https://schema.org",
+      "@type":              "SoftwareApplication",
+      name:                 "Resistor Color Code Calculator",
+      applicationCategory:  "EducationalApplication",
+      operatingSystem:      "Web",
+      offers:               { "@type": "Offer", price: "0", priceCurrency: "INR" },
+      url:                  BASE + "/tools/resistor-calculator/",
+      description:          "Interactive 4-band resistor colour code calculator with live graphic.",
+      publisher:            { "@type": "Organization", name: siteConfig.name, url: BASE },
     },
   },
 

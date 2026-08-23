@@ -57,7 +57,7 @@ export interface Tool {
   built?: boolean;     // default true; set false for planned-but-not-yet-built
 }
 
-export type ToolCategory = "finance" | "science" | "kids";
+export type ToolCategory = "finance" | "science" | "technology" | "kids";
 
 export const tools: Tool[] = [
   {
@@ -132,16 +132,25 @@ export const tools: Tool[] = [
     category: "science",
     built: true,
   },
+  {
+    slug: "resistor-calculator",
+    title: "Resistor Color Code Calculator",
+    description: "Decode 4-band resistor color codes instantly. Click the color strips, see the resistor change, get the value.",
+    emoji: "🔌",
+    category: "technology",
+    built: true,
+  },
 ];
 
 // Only expose tools that have actual pages built.
 export const builtTools = tools.filter((t) => t.built !== false);
 
 // Group by category, preserving order from the tools array above.
-const CATEGORY_ORDER: ToolCategory[] = ["finance", "science", "kids"];
+const CATEGORY_ORDER: ToolCategory[] = ["finance", "science", "technology", "kids"];
 const CATEGORY_LABELS: Record<ToolCategory, string> = {
   finance: "Finance Tools",
   science: "Science & Exploration",
+  technology: "Technology",
   kids: "Kids Corner",
 };
 
