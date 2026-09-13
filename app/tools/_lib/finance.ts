@@ -25,6 +25,8 @@ export interface EmiRow {
   principal: number;
   closing: number;
   isPartPayment?: boolean;
+  /** Prepayment penalty charged on this part-payment row, if any. */
+  penaltyAmount?: number;
 }
 
 export function buildSchedule(
@@ -61,10 +63,14 @@ export function buildSchedule(
   return rows;
 }
 
-/** Insert part payments into an existing EMI schedule. */
+/** Insert part payments into an existing EMI schedule.
+ *  `penaltyPercent`, if given, is charged on the portion of the payment left
+ *  over after settling interim interest — i.e. on the amount that would
+ *  otherwise have gone toward reducing principal. The penalty itself does
+ *  not reduce the loan balance; only the remainder does. */
 export function applyPartPayments(
   schedule: EmiRow[],
-  partPayments: { amount: number; date: string }[],
+  partPayments: { amount: number; date: string; penaltyPercent?: number }[],
   annualRate: number,
   emi: number
 ): EmiRow[] {
@@ -93,7 +99,16 @@ export function applyPartPayments(
       (ppDate.getTime() - new Date(lastRow.date!).getTime()) / 86_400_000
     );
     const interestForDays = +(lastRow.closing * dailyRate * daysBetween).toFixed(2);
-    let principalPart = +(pp.amount - interestForDays).toFixed(2);
+
+    // What's left after settling interim interest is what's available to pay
+    // down principal — and what the prepayment penalty is charged on.
+    let netAfterInterest = +(pp.amount - interestForDays).toFixed(2);
+    if (netAfterInterest < 0) netAfterInterest = 0;
+
+    const penaltyPercent = pp.penaltyPercent || 0;
+    const penaltyAmount = +(netAfterInterest * penaltyPercent / 100).toFixed(2);
+
+    let principalPart = +(netAfterInterest - penaltyAmount).toFixed(2);
     if (principalPart < 0) principalPart = 0;
     if (principalPart > lastRow.closing) principalPart = lastRow.closing;
     const newClosing = +(lastRow.closing - principalPart).toFixed(2);
@@ -107,6 +122,7 @@ export function applyPartPayments(
       principal: principalPart,
       closing: newClosing,
       isPartPayment: true,
+      penaltyAmount,
     };
 
     const nextDate =
